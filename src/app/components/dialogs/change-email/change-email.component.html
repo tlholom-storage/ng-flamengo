@@ -1,0 +1,59 @@
+<h1 mat-dialog-title>Change Email</h1>
+<div mat-dialog-content>
+  <form [formGroup]="this.changeEmailForm">
+    <div fxLayout="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email" />
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm Email</mat-label>
+        <input
+          matInput
+          placeholder="Confirm Email"
+          formControlName="confirm_email"
+        />
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" class="outside-mat-error">
+      <mat-error *ngIf="changeEmailForm.hasError('notSameEmails')">
+        Emails do not match
+      </mat-error>
+    </div>
+    <br />
+    <div fxLayout="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          formControlName="password"
+        />
+        <mat-hint
+          >At least 8 characters and must contain 1 lowercase and uppercase
+          letter, 1 digit</mat-hint
+        >
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions fxLayoutAlign="space-around center">
+  <div fxLayout="row" fxLayoutGap="10px">
+    <div fxLayout="column">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    </div>
+    <div fxLayout="column">
+      <button
+        [disabled]="!changeEmailForm.valid"
+        mat-raised-button
+        color="primary"
+        (click)="changeEmail()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>

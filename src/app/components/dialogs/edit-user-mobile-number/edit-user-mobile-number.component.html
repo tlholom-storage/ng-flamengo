@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Edit Mobile Number</h1>
+<div mat-dialog-content>
+  <form [formGroup]="editUserMobileNumberForm">
+    <div fxLayout="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile Number</mat-label>
+        <input
+          matInput
+          placeholder="Mobile Number"
+          formControlName="mobile_number"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions fxLayoutAlign="space-around center">
+  <div fxLayout="row" fxLayoutGap="10px">
+    <div fxLayout="column">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    </div>
+    <div fxLayout="column">
+      <button
+        [disabled]="!editUserMobileNumberForm.valid"
+        mat-raised-button
+        color="primary"
+        (click)="editUserMobileNumber()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>

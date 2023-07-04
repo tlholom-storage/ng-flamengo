@@ -1,0 +1,144 @@
+<div class="container">
+  <div
+    class="add-address-section"
+    fxLayout="row"
+    fxLayoutAlign="space-around center"
+  >
+    <div fxFlex="40%">
+      <h3>Add Address</h3>
+      <mat-divider></mat-divider>
+      <mat-spinner [fxHide]="!loading"></mat-spinner>
+      <div *ngIf="!loading && this.errorMessage">
+        <br />
+        <mat-error>
+          {{ this.errorMessage }}
+        </mat-error>
+        <br />
+      </div>
+      <br />
+      <div class="add-address-form">
+        <div
+          class="button-row"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxLayoutGap="30px"
+        >
+          <button
+            mat-flat-button
+            style="width: 50%"
+            (click)="changeSelectedAddressType('Residential')"
+            [ngStyle]="{
+              'background-color':
+                selectedAddressType == 'Residential' ? '#839da9' : '#9e9e9e'
+            }"
+          >
+            <span>Residential</span>
+          </button>
+          <button
+            mat-flat-button
+            style="width: 50%"
+            (click)="changeSelectedAddressType('Business')"
+            [ngStyle]="{
+              'background-color':
+                selectedAddressType == 'Business' ? '#839da9' : '#9e9e9e'
+            }"
+          >
+            <span>Business</span>
+          </button>
+        </div>
+        <br />
+        <form [formGroup]="addAddressForm">
+          <div fxLayout="row" class="row" fxLayoutGap="-10px">
+            <div fxLayout="column" style="width: 45%">
+              <mat-form-field appearance="outline">
+                <mat-label>Recipient Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Recipient Name"
+                  formControlName="recipient_name"
+                />
+              </mat-form-field>
+            </div>
+            <div fxLayout="column" style="width: 45%">
+              <mat-form-field appearance="outline">
+                <mat-label>Recipient Mobile Number</mat-label>
+                <input
+                  matInput
+                  placeholder="Recipient Name"
+                  formControlName="recipient_mobile_number"
+                />
+                <mat-hint
+                  >Please enter a valid south african number without country
+                  code in order to recieve sms about the order.</mat-hint
+                >
+              </mat-form-field>
+            </div>
+          </div>
+          <br />
+          <br />
+          <div fxLayout="row" class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Street Address</mat-label>
+              <input
+                matInput
+                placeholder="Street Address"
+                formControlName="street_address"
+              />
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Complex/Building (Optional)</mat-label>
+              <input
+                matInput
+                placeholder="Complex/Building (Optional)"
+                formControlName="complex"
+              />
+              <mat-hint
+                >Complex or Building Name, unit number or floor.</mat-hint
+              >
+            </mat-form-field>
+          </div>
+          <br />
+          <div fxLayout="row" class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Suburb</mat-label>
+              <input matInput placeholder="Suburb" formControlName="suburb" />
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>City</mat-label>
+              <input matInput placeholder="City" formControlName="city" />
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" class="row" fxLayoutGap="-10px">
+            <div fxLayout="column" style="width: 45%">
+              <mat-form-field appearance="outline">
+                <mat-label>Province</mat-label>
+                <input
+                  matInput
+                  placeholder="Province"
+                  formControlName="province"
+                />
+              </mat-form-field>
+            </div>
+            <div fxLayout="column" style="width: 45%">
+              <mat-form-field appearance="outline">
+                <mat-label>Postal Code</mat-label>
+                <input
+                  matInput
+                  placeholder="Postal Code"
+                  formControlName="postal_code"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout="row" class="row">
+            <button mat-flat-button color="primary" style="width: 80%;" (click)="addNewAddress()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

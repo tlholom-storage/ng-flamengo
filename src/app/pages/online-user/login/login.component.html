@@ -1,0 +1,66 @@
+<app-header [hasSideNav]="false" [isAdmin]="false"></app-header>
+<div class="container">
+  <div
+    class="login-section"
+    fxLayout
+    fxFill
+    fxLayoutAlign="space-around center"
+  >
+    <div fxFlex="35%"></div>
+    <div fxFlex>
+      <h3>Login</h3>
+      <mat-divider></mat-divider>
+      <div *ngIf="this.errorMessage">
+        <br>
+        <mat-error>
+          {{this.errorMessage}}
+        </mat-error>
+        <br>
+      </div>
+      <form [formGroup]="loginForm">
+        <div fxLayout="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Email"
+              formControlName="email"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              type="password"
+              placeholder=""
+              formControlName="password"
+            />
+            <mat-hint routerLink="/account/forgot-password">Forgot Password?</mat-hint>
+          </mat-form-field>
+        </div>
+        <br/>
+        <div fxLayout="row">
+          <button
+            [disabled]="!this.loginForm.valid"
+            mat-flat-button
+            color="accent"
+            style="width: 80%"
+            (click)="login()"
+          >
+            <mat-icon>lock</mat-icon>
+            Login
+          </button>
+        </div>
+        <br>
+        <div fxLayout="row">
+          <p fxFlex="80%" fxLayoutAlign="center center">
+            New To The Platform?&nbsp;<a style="color: #517686;" routerLink="/account/register">Create Account</a>
+          </p>
+        </div>
+      </form>
+    </div>
+    <div fxFlex="35%"></div>
+  </div>
+</div>

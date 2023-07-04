@@ -1,0 +1,95 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav
+    mode="side"
+    #sidenav
+    closed
+    position="start"
+    class="mat-elevation-z8"
+  >
+    <div class="sidenav-body">
+      <div class="content">
+        <button mat-button class="menu-button" routerLink="#">
+          <span>Home</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="#">
+          <span>Shop by Catergory</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="#">
+          <span>Deals</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="#">
+          <span>Orders</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/account">
+          <span>My Account</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="#">
+          <span>Help</span>
+        </button>
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="#">
+          <mat-icon>shopping_cart</mat-icon>
+          <span>Cart</span>
+        </button>
+      </div>
+      <div class="footer">
+        <div
+          class="button-row"
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          *ngIf="!this.authService.isLoggedIn"
+        >
+          <button
+            mat-button
+            color="accent"
+            class="action-button"
+            routerLink="/account/login"
+          >
+            <mat-icon>person</mat-icon>
+            <span>Login</span>
+          </button>
+          <button
+            mat-flat-button
+            color="accent"
+            class="action-button"
+            routerLink="/account/register"
+          >
+            Register
+          </button>
+        </div>
+        <div
+          class="button-row"
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          *ngIf="this.authService.isLoggedIn"
+        >
+          <button mat-button color="accent" class="action-button">
+            <mat-icon>person</mat-icon>
+            <span>
+              {{ this.currentUser.first_name }}
+            </span>
+          </button>
+          <button
+            mat-flat-button
+            color="accent"
+            class="action-button"
+            (click)="this.authService.signOut()"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header
+      (toggleSideNav)="sidenav.toggle()"
+      [hasSideNav]="true"
+      [isAdmin]="false"
+    ></app-header>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

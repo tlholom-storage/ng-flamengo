@@ -1,0 +1,106 @@
+<div class="container">
+  <div
+    class="personal-details-section"
+    fxLayout="row"
+    fxLayoutAlign="space-around center"
+  >
+    <div fxFlex="40%">
+      <h3>Personal Details</h3>
+      <mat-divider></mat-divider>
+      <mat-spinner [fxHide]="!loading"></mat-spinner>
+      <div *ngIf="!loading && this.errorMessage">
+        <br />
+        <mat-error>
+          {{ this.errorMessage }}
+        </mat-error>
+        <br />
+      </div>
+      <br />
+      <div *ngIf="!loading">
+        <div fxLayout="row" class="personal-details-row">
+          <div fxLayout="column" fxLayoutAlign="start">
+            <div fxLayout="row">
+              <span><b>Your Name</b></span>
+            </div>
+            <div fxLayout="row">
+              <span
+                >{{ currentUser.first_name }} {{ currentUser.last_name }}</span
+              >
+            </div>
+          </div>
+          <span class="spacer"></span>
+          <div fxLayout="column" fxLayoutAlign="end">
+            <button
+              mat-button
+              class="row-button"
+              color="primary"
+              (click)="openEditUserNamesDialog()"
+            >
+              <span>Edit</span>
+            </button>
+          </div>
+        </div>
+        <br />
+        <div fxLayout="row" class="personal-details-row">
+          <div fxLayout="column" fxLayoutAlign="start">
+            <div fxLayout="row">
+              <span><b>Email Address</b></span>
+            </div>
+            <div fxLayout="row">
+              <span>{{ currentUser.email }}</span>
+            </div>
+          </div>
+          <span class="spacer"></span>
+          <div fxLayout="column" fxLayoutAlign="end">
+            <button mat-button class="row-button" color="primary" (click)="openChangeEmailDialog()">
+              <span>Edit</span>
+            </button>
+          </div>
+        </div>
+        <br />
+        <div fxLayout="row" class="personal-details-row">
+          <div fxLayout="column" fxLayoutAlign="start">
+            <div fxLayout="row">
+              <span><b>Password</b></span>
+            </div>
+            <div fxLayout="row"><span>********</span></div>
+          </div>
+          <span class="spacer"></span>
+          <div fxLayout="column" fxLayoutAlign="end">
+            <button
+              mat-button
+              class="row-button"
+              color="primary"
+              (click)="openResetPasswordDialog()"
+            >
+              <span>Reset</span>
+            </button>
+          </div>
+        </div>
+        <br />
+        <div fxLayout="row" class="personal-details-row">
+          <div fxLayout="column" fxLayoutAlign="start">
+            <div fxLayout="row">
+              <span><b>Mobile Number</b></span>
+            </div>
+            <div fxLayout="row">
+              <span>{{ currentUser.mobile_number }}</span>
+            </div>
+          </div>
+          <span class="spacer"></span>
+          <div fxLayout="column" fxLayoutAlign="end">
+            <button
+              mat-button
+              class="row-button"
+              color="primary"
+              (click)="openEditMobileNumberDialog()"
+            >
+              <span>Edit</span>
+            </button>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>

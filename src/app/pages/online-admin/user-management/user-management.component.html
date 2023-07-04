@@ -1,0 +1,76 @@
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="column">
+      <div>
+        <h3>Manage Users</h3>
+        <span class="small-space"></span>
+      </div>
+      <br />
+      <p>
+        User management gives administrator control to access and change user
+        details along with user payment and user address information.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<table mat-table [dataSource]="users">
+  <ng-container
+    *ngFor="let column of columns; let i = index"
+    [matColumnDef]="column.columnDef"
+  >
+    <th mat-header-cell *matHeaderCellDef>
+      {{ column.header }}
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <span *ngIf="column.columnDef == 'position'">{{i+1}}</span>
+      <div *ngIf="column.columnDef == 'actions'">
+        <button
+          mat-icon-button
+          color="accent"
+          aria-label="Icon button with a edit icon"
+          (click)="editUserDetails(row)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="accent"
+          aria-label="Icon button with a delete icon"
+          (click)="deleteUser(row)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button
+        mat-icon-button
+        color="accent"
+        aria-label="Icon button with a more_vert icon"
+        [matMenuTriggerFor]="menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      </div>
+      {{ column.cell(row) }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item disabled>
+    <mat-icon>credit_card</mat-icon>
+    <span>View/Edit Payment Method Details</span>
+  </button>
+  <button mat-menu-item disabled>
+    <mat-icon>home</mat-icon>
+    <span>View/Edit Address Details</span>
+  </button>
+  <button mat-menu-item disabled >
+    <mat-icon>attach_money</mat-icon>
+    <span>View Orders</span>
+  </button>
+</mat-menu>

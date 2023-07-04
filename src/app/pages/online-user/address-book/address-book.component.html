@@ -1,0 +1,99 @@
+<div class="container">
+  <div
+    class="address-book-section"
+    fxLayout="row"
+    fxLayoutAlign="space-around center"
+  >
+    <div fxFlex="40%">
+      <h3>Address Book</h3>
+      <mat-divider></mat-divider>
+      <mat-spinner [fxHide]="!loading"></mat-spinner>
+      <div *ngIf="!loading && this.errorMessage">
+        <br />
+        <mat-error>
+          {{ this.errorMessage }}
+        </mat-error>
+        <br />
+      </div>
+      <br />
+      <div>
+        <div fxlayout="row">
+          <button
+            mat-button
+            class="row-button"
+            routerLink="/account/address-book/add"
+          >
+            <span fxLayoutAlign="start" fxFlex="35%">Add New Address</span>
+            <span class="spacer"></span>
+            <mat-icon
+              fxLayoutAlign="end"
+              [fxHide.xs]="true"
+              [fxHide.sm]="true"
+              style="margin-top: 6px"
+              >navigate_next</mat-icon
+            >
+          </button>
+          <br />
+        </div>
+      </div>
+      <div *ngIf="!loading">
+        <mat-card
+          fxLayout="row"
+          class="address-card"
+          fxLayoutGap="80px"
+          fxLayoutGap.md="30px"
+          fxLayoutGap.xs="10px"
+          fxLayoutGap.xs="5px"
+          *ngFor="let address of this.currentAddress; let i = index"
+        >
+          <div fxLayout="column" fxLayoutAlign="center center">{{ i + 1 }}</div>
+          <div
+            fxLayout="column"
+            fxLayoutGap="5px"
+            fxLayoutGap.xs="1px"
+            fxLayoutGap.xs="2px"
+          >
+            <div fxLayout="row">
+              <div fxLayout="column">
+                <span
+                  ><b>{{ address.recipient_name }}</b></span
+                >
+              </div>
+              &nbsp;
+              <div fxLayout="column">
+                <mat-chip-list aria-label="Type">
+                  <mat-chip>{{ address.address_type }}</mat-chip>
+                </mat-chip-list>
+              </div>
+            </div>
+            <div fxLayout="row">
+              <span
+                >{{ address.street_address }} <br />
+                {{ address.suburb }}, {{ address.city }},
+                {{ address.postal_code }}</span
+              >
+            </div>
+            <div fxLayout="row">
+              <span style="color: gray">{{
+                address.recipient_mobile_number
+              }}</span>
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="5px"
+              fxLayoutGap.xs="1px"
+              fxLayoutGap.xs="2px"
+            >
+              <div fxLayout="column" (click)="deleteAddress()">
+                <button mat-button color="primary">Delete</button>
+              </div>
+              <div fxLayout="column" (click)="editAddress()">
+                <button mat-button color="primary">Edit</button>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

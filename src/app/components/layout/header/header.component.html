@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <div *ngIf="hasSideNav">
+    <button
+      [disabled]="!hasSideNav"
+      mat-icon-button
+      (click)="toggleSideNav.emit()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <span routerLink="/">October Clothing</span>
+  <span class="spacer"></span>
+  <div *ngIf="!isAdmin">
+    <button [disabled]="isAdmin" mat-icon-button>
+      <mat-icon matBadge="15" matBadgeColor="warn"
+        >shopping_cart</mat-icon
+      >
+    </button>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@import "./assets/themes/ng-flamengo.theme.scss";
+
+@include mat.all-component-themes($ng-flamengo-theme);
+@include mat.core();
+
+.hidden {
+  visibility: hidden;
+}
+
+mat-spinner {
+  position: fixed !important;
+  margin-top: -50px;
+  margin-left: -50px;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+}
+
+.scrollbar-thin {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: gray;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.contact-img
+{
+  width: 150px;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+}
+
+.contact-img-big
+{
+  width: 300px;
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 50%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav {
+  width: 280px;
+  padding:15px;
+}
+.mat-drawer {
+  background-color: #517686;
+  color:#fff
+}
+.main-content {
+  padding:20px;
+}
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+

@@ -1,0 +1,123 @@
+<app-header [hasSideNav]="false" [isAdmin]="false"></app-header>
+<div class="container">
+  <div
+    class="register-section"
+    fxLayout
+    fxFill
+    fxLayoutAlign="space-around center"
+  >
+    <div fxFlex="35%"></div>
+    <div fxFlex>
+      <h3>Register</h3>
+      <mat-divider></mat-divider>
+      <div *ngIf="this.errorMessage">
+        <br />
+        <mat-error>
+          {{ this.errorMessage }}
+        </mat-error>
+        <br />
+      </div>
+      <form [formGroup]="registerForm">
+        <div fxLayout="row">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input
+              matInput
+              placeholder="First Name"
+              formControlName="first_name"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input
+              matInput
+              placeholder="Last Name"
+              formControlName="last_name"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <input
+              matInput
+              placeholder="Mobile Number"
+              formControlName="mobile_number"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email" />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Email</mat-label>
+            <input
+              matInput
+              placeholder="Confirm Email"
+              formControlName="confirm_email"
+            />
+            <mat-error *ngIf="registerForm.hasError('notSameEmails')">
+              Emails do not match
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              type="password"
+              matInput
+              placeholder="Password"
+              formControlName="password"
+            />
+            <mat-hint
+              >At least 8 characters and must contain 1 lowercase and uppercase
+              letter, 1 digit</mat-hint
+            >
+          </mat-form-field>
+        </div>
+        <br />
+        <br />
+        <div fxLayout="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input
+              type="password"
+              matInput
+              placeholder="Confirm Password"
+              formControlName="confirm_password"
+            />
+            <mat-error *ngIf="registerForm.hasError('notSamePasswords')">
+              Passwords do not match
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <button
+            [disabled]="!this.registerForm.valid"
+            mat-flat-button
+            color="accent"
+            style="width: 80%"
+            (click)="register()"
+          >
+            Register Now
+          </button>
+        </div>
+        <div fxLayout="row">
+          <p>
+            By clicking on 'Register Now', you agree to<br />
+            our Terms and Conditions and confirm that<br />
+            you are over 18 years of age
+          </p>
+        </div>
+      </form>
+    </div>
+    <div fxFlex="35%"></div>
+  </div>
+</div>
